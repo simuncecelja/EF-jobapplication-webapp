@@ -64,19 +64,21 @@ public class LeadResourceService {
     @Inject
     LeadRegistration registration;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Lead> listAllMembers() {
-        return repository.findAllOrderedByName();
-    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Lead> lookupMemberByName(@QueryParam("name") String name) {
-    	List<Lead> lead = repository.findByName(name);
-        if (lead == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        }
+    	
+    	List<Lead> lead;
+    	
+    	if (name != null) {
+    		lead = repository.findByName(name);
+    		if (lead == null) {
+                throw new WebApplicationException(Response.Status.NOT_FOUND);
+            }
+		} else {
+			lead =repository.findAllOrderedByName();
+		}
         return lead;
     }
 

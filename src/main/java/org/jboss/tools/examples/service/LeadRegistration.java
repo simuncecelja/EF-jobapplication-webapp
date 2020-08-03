@@ -34,25 +34,19 @@ public class LeadRegistration {
     @Inject
     private EntityManager em;
 
-    @Inject
-    private Event<Lead> leadEventSrc;
-
     public void insert(Lead lead) throws Exception {
         log.info("Inserting " + lead.getName());
         em.persist(lead);
-        leadEventSrc.fire(lead);
     }
     
     public void update(Lead lead) throws Exception {
         log.info("Updating lead with ID:" + lead.getId());
         em.merge(lead);
-        leadEventSrc.fire(lead);
     }
     
     public void delete(Lead lead) throws Exception {
         log.info("Deleating lead with ID:" + lead.getId());
         em.remove(em.contains(lead) ? lead : em.merge(lead));
-        leadEventSrc.fire(lead);
     }
     
     
