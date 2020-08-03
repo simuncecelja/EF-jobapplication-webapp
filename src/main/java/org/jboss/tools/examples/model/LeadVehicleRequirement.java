@@ -41,6 +41,7 @@ public class LeadVehicleRequirement implements Serializable {
     @Size(min = 1, max = 255)
     private String requirement;
 
+    
     public LeadVehicleRequirement() {
 	}
 

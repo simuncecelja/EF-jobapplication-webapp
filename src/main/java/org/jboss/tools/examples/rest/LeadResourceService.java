@@ -45,7 +45,7 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.tools.examples.data.LeadRepository;
 import org.jboss.tools.examples.model.Lead;
-import org.jboss.tools.examples.service.LeadRegistration;
+import org.jboss.tools.examples.service.LeadManager;
 
 
 @Path("/leads")
@@ -62,7 +62,7 @@ public class LeadResourceService {
     private LeadRepository repository;
 
     @Inject
-    LeadRegistration registration;
+    LeadManager registration;
 
 
     @GET
@@ -92,7 +92,7 @@ public class LeadResourceService {
 
         try {
             // Validates lead using bean validation
-            validateLead(lead);
+            validateLead(lead,false);
             registration.insert(lead);
 
             builder = Response.ok(lead,MediaType.APPLICATION_JSON);
@@ -124,13 +124,18 @@ public class LeadResourceService {
         Response.ResponseBuilder builder = null;
 
         try {
-            // Validates lead using bean validation
-            //validateLead(lead);
 
             Lead fetchedLead = repository.findById(lead.getId());
             if (fetchedLead == null) {
                 throw new WebApplicationException();
             }
+            
+            if (lead.getEmail().equals(fetchedLead.getEmail())) {
+            	validateLead(lead,true);
+			}else {
+				validateLead(lead,false);
+			}
+            
             registration.update(lead);
 
             builder = Response.ok(lead, MediaType.APPLICATION_JSON);
@@ -188,7 +193,7 @@ public class LeadResourceService {
         return builder.build();
     }
 
-    private void validateLead(Lead lead) throws ConstraintViolationException, ValidationException {
+    private void validateLead(Lead lead, boolean skipEmailCheck) throws ConstraintViolationException, ValidationException {
         // Create a bean validator and check for issues.
         Set<ConstraintViolation<Lead>> violations = validator.validate(lead);
 
@@ -196,6 +201,9 @@ public class LeadResourceService {
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
         }
 
+        if (skipEmailCheck)
+			return;
+        
         // Check the uniqueness of the email address
         if (emailAlreadyExists(lead.getEmail())) {
             throw new ValidationException("Unique Email Violation");

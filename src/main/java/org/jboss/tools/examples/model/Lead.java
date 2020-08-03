@@ -17,7 +17,6 @@
 package org.jboss.tools.examples.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -75,7 +74,7 @@ public class Lead implements Serializable {
     @OneToMany(targetEntity=LeadVehicleRequirement.class,cascade = CascadeType.ALL, 
             	fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "leadId", referencedColumnName = "id")
-    private List<LeadVehicleRequirement> leadVehicleRequirement = new ArrayList<>();
+    private List<LeadVehicleRequirement> leadVehicleRequirement;
 
     public Long getId() {
         return id;
