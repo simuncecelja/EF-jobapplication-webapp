@@ -1,0 +1,114 @@
+{
+	"variables": [],
+	"info": {
+		"name": "EF_jobapplication_app",
+		"_postman_id": "5b2e4a57-0c6e-7d9f-7223-23b7d46a31f4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_ALL_LEADS",
+			"request": {
+				"url": "http://localhost:8080/EF-jobapplication-webapp/rest/leads",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET_LEADS_BY_NAME",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/EF-jobapplication-webapp/rest/leads?name=april",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"EF-jobapplication-webapp",
+						"rest",
+						"leads"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "april",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "INSERT_NEW_LEAD",
+			"request": {
+				"url": "http://localhost:8080/EF-jobapplication-webapp/rest/leads",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Šimun Cecelja\",\r\n\t\"email\": \"ceceljas@gmail.com\",\r\n\t\"phoneNumber\": \"0977177171\",\r\n\t\"countryISOCode\" : \"HR\",\r\n\t\"leadVehicleRequirement\": [\"Citroen\",\"Ford\"]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE_LEAD",
+			"request": {
+				"url": "http://localhost:8080/EF-jobapplication-webapp/rest/leads",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 11,\n    \"name\": \"Šimun Cecelja\",\n    \"email\": \"ceceljas@gmail.com\",\n    \"phoneNumber\": \"0977177171\",\n    \"countryISOCode\": \"SLO\",\n    \"leadVehicleRequirement\": [\n        {\n            \"id\": 51,\n            \"requirement\": \"Citroen\"\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_LEAD",
+			"request": {
+				"url": "http://localhost:8080/EF-jobapplication-webapp/rest/leads/11",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
