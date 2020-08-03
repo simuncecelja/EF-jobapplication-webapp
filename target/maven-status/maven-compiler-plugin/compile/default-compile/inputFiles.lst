@@ -1,7 +1,7 @@
 C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\model\Lead.java
 C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\data\LeadRepository.java
 C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\rest\LeadResourceService.java
+C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\service\LeadManager.java
 C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\rest\JaxRsActivator.java
 C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\util\Resources.java
 C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\model\LeadVehicleRequirement.java
-C:\Javaprojects\EF-jobapplication-webapp\src\main\java\org\jboss\tools\examples\service\LeadRegistration.java

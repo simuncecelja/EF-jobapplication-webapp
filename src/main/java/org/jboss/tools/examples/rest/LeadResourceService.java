@@ -62,7 +62,7 @@ public class LeadResourceService {
     private LeadRepository repository;
 
     @Inject
-    LeadManager registration;
+    LeadManager manager;
 
 
     @GET
@@ -93,7 +93,7 @@ public class LeadResourceService {
         try {
             // Validates lead using bean validation
             validateLead(lead,false);
-            registration.insert(lead);
+            manager.insert(lead);
 
             builder = Response.ok(lead,MediaType.APPLICATION_JSON);
         } catch (ConstraintViolationException ce) {
@@ -136,7 +136,7 @@ public class LeadResourceService {
 				validateLead(lead,false);
 			}
             
-            registration.update(lead);
+            manager.update(lead);
 
             builder = Response.ok(lead, MediaType.APPLICATION_JSON);
         } catch (ConstraintViolationException ce) {
@@ -175,7 +175,7 @@ public class LeadResourceService {
             if (fetchedLead == null) {
                 throw new WebApplicationException();
             }
-            registration.delete(fetchedLead);
+            manager.delete(fetchedLead);
 
             builder = Response.ok();
         } catch (WebApplicationException e) {

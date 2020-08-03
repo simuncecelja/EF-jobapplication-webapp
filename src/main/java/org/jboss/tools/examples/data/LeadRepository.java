@@ -32,8 +32,16 @@ public class LeadRepository {
 	
     @Inject
     private EntityManager em;
-    
 
+
+    public List<Lead> findAllOrderedByName() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Lead> criteria = cb.createQuery(Lead.class);
+        Root<Lead> lead = criteria.from(Lead.class);
+        criteria.select(lead).orderBy(cb.asc(lead.get("name")));
+        return em.createQuery(criteria).getResultList();
+    }
+    
     public Lead findById(Long id) {
         return em.find(Lead.class, id);
     }
@@ -53,20 +61,11 @@ public class LeadRepository {
         Root<Lead> lead = criteria.from(Lead.class);
         
         criteria.select(lead)
-        .where(cb.like(lead.<String>get("name"), "%"+name+"%"))
+        .where(cb.like(cb.lower(lead.<String>get("name")), "%"+name.toLowerCase()+"%"))
         .orderBy(cb.asc(lead.get("name")));
         
         return em.createQuery(criteria).getResultList();
     }
-
-    public List<Lead> findAllOrderedByName() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Lead> criteria = cb.createQuery(Lead.class);
-        Root<Lead> lead = criteria.from(Lead.class);
-        criteria.select(lead).orderBy(cb.asc(lead.get("name")));
-        return em.createQuery(criteria).getResultList();
-    }
     
-
     
 }
