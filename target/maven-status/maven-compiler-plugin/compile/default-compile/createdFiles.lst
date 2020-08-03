@@ -1,0 +1,9 @@
+org\jboss\tools\examples\rest\JaxRsActivator.class
+org\jboss\tools\examples\data\LeadRepository.class
+org\jboss\tools\examples\model\Lead_.class
+org\jboss\tools\examples\model\LeadVehicleRequirement.class
+org\jboss\tools\examples\model\Lead.class
+org\jboss\tools\examples\util\Resources.class
+org\jboss\tools\examples\rest\LeadResourceService.class
+org\jboss\tools\examples\service\LeadRegistration.class
+org\jboss\tools\examples\model\LeadVehicleRequirement_.class
